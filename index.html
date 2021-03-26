@@ -7,7 +7,7 @@
   <link rel='stylesheet' href='https://ps.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'><link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-  <audio id="loading" autoplay loop ><source src="https://cloud.xlife.fr/music/loading.mp3" type="audio/mp3"></audio>
+  <audio id="loading" src="music/music.mp3" autoplay="true" hidden="true" loop="true"></audio>
     <div class="video-background">
       <iframe height="100%" width="150%" src="https://www.youtube.com/embed/HWurFwhu09s?controls=0&amp;showinfo=0&amp;rel=0&amp;autoplay=1&amp;loop=1&amp;mute=1" frameborder="0"></iframe>
  </div>
@@ -48,7 +48,6 @@
     <div class="img" id="img-3"></div>
   </li>
 </ul>
-<!-- partial -->
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/parallax/2.1.3/jquery.parallax.min.js'></script><script  src="js/script.js"></script>
 
@@ -59,8 +58,6 @@
 </script>
 
 <script type="text/javascript">
-// this will actually restart the loading bar a lot, making multiple loading bars is an exercise to the reader... for now.
-// for a set of possible events, see https://github.com/citizenfx/cfx-client/blob/up-master/components/loading-screens-five/src/LoadingScreens.cpp
 var count = 0;
 var thisCount = 0;
 
@@ -105,11 +102,10 @@ window.addEventListener('message', function(e)
 });
 </script>
 
-
 <script>
   var play = false;
           var vid = document.getElementById("loading");
-          vid.volume = 0.3;
+          vid.volume = 0.1;
           window.addEventListener('keyup', function(e)
           {
               if (e.which == 69){
@@ -118,6 +114,25 @@ window.addEventListener('message', function(e)
                   vid.volume = Math.max(vid.volume - 0.1,0);
               };
           });
+  
+          var audio = document.querySelector('audio');
+  
+          if (audio) {
+  
+          window.addEventListener('keydown', function (event) {
+  
+          var key = event.which || event.keyCode;
+  
+          if (key === 32) { // spacebar
+  
+          event.preventDefault();
+  
+          audio.paused ? audio.play() : audio.pause();
+        
+      }
+  
+    });
+  }
   </script>
 
 </body>
